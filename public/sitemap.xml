@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Homepage -->
+  <url>
+    <loc>https://dahr-parfums.com/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dahr-parfums.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dahr-parfums.com/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dahr-parfums.com/?lang=en"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://dahr-parfums.com/?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dahr-parfums.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dahr-parfums.com/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dahr-parfums.com/?lang=en"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Shop Catalog -->
+  <url>
+    <loc>https://dahr-parfums.com/#shop?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dahr-parfums.com/#shop?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dahr-parfums.com/#shop?lang=ar"/>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dahr-parfums.com/#shop?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dahr-parfums.com/#shop?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dahr-parfums.com/#shop?lang=ar"/>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Collections -->
+  <url>
+    <loc>https://dahr-parfums.com/#collections?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dahr-parfums.com/#collections?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dahr-parfums.com/#collections?lang=ar"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dahr-parfums.com/#collections?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dahr-parfums.com/#collections?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dahr-parfums.com/#collections?lang=ar"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- The House of DAHR (About) -->
+  <url>
+    <loc>https://dahr-parfums.com/#about?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dahr-parfums.com/#about?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dahr-parfums.com/#about?lang=ar"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dahr-parfums.com/#about?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dahr-parfums.com/#about?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dahr-parfums.com/#about?lang=ar"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- The Olfactive Journal -->
+  <url>
+    <loc>https://dahr-parfums.com/#journal?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dahr-parfums.com/#journal?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dahr-parfums.com/#journal?lang=ar"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dahr-parfums.com/#journal?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dahr-parfums.com/#journal?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dahr-parfums.com/#journal?lang=ar"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Concierge & Boutiques (Contact) -->
+  <url>
+    <loc>https://dahr-parfums.com/#contact?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dahr-parfums.com/#contact?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dahr-parfums.com/#contact?lang=ar"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dahr-parfums.com/#contact?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dahr-parfums.com/#contact?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dahr-parfums.com/#contact?lang=ar"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Legal & Climate Shipping -->
+  <url>
+    <loc>https://dahr-parfums.com/#shipping-returns?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dahr-parfums.com/#shipping-returns?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dahr-parfums.com/#shipping-returns?lang=ar"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://dahr-parfums.com/#shipping-returns?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dahr-parfums.com/#shipping-returns?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dahr-parfums.com/#shipping-returns?lang=ar"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://dahr-parfums.com/#privacy?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dahr-parfums.com/#privacy?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dahr-parfums.com/#privacy?lang=ar"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://dahr-parfums.com/#privacy?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dahr-parfums.com/#privacy?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dahr-parfums.com/#privacy?lang=ar"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://dahr-parfums.com/#terms?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dahr-parfums.com/#terms?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dahr-parfums.com/#terms?lang=ar"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://dahr-parfums.com/#terms?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dahr-parfums.com/#terms?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://dahr-parfums.com/#terms?lang=ar"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>

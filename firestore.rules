@@ -1,0 +1,129 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ------------------------------------------------------------------------
+    // Helper Functions
+    // ------------------------------------------------------------------------
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function getAdminDoc() {
+      return get(/databases/$(database)/documents/adminUsers/$(request.auth.uid));
+    }
+
+    function isAdmin() {
+      return isSignedIn() && 
+        exists(/databases/$(database)/documents/adminUsers/$(request.auth.uid)) &&
+        getAdminDoc().data.role == 'fullAdmin' &&
+        (!('status' in getAdminDoc().data) || getAdminDoc().data.status == 'active');
+    }
+
+    function isStaffOrAdmin() {
+      return isSignedIn() && 
+        exists(/databases/$(database)/documents/adminUsers/$(request.auth.uid)) &&
+        (getAdminDoc().data.role == 'fullAdmin' || getAdminDoc().data.role == 'staff') &&
+        (!('status' in getAdminDoc().data) || getAdminDoc().data.status == 'active');
+    }
+
+    // ------------------------------------------------------------------------
+    // 1. Products Collection
+    // Public read for active products; Full catalog read & write restricted to Staff/Admin
+    // ------------------------------------------------------------------------
+    match /products/{productId} {
+      allow read: if resource.data.status == 'active' || isStaffOrAdmin();
+      allow create, update, delete: if isStaffOrAdmin();
+    }
+
+    // ------------------------------------------------------------------------
+    // 2. Journal Articles Collection
+    // Public read for published articles; Draft read & write restricted to Staff/Admin
+    // ------------------------------------------------------------------------
+    match /journalArticles/{articleId} {
+      allow read: if resource.data.status == 'published' || isStaffOrAdmin();
+      allow create, update, delete: if isStaffOrAdmin();
+    }
+
+    // ------------------------------------------------------------------------
+    // 3. Orders Collection
+    // Customer can read only their own orders; Public checkout can create orders;
+    // Status and internal updates restricted to fullAdmin
+    // ------------------------------------------------------------------------
+    match /orders/{orderId} {
+      allow read: if (isSignedIn() && resource.data.customer.uid == request.auth.uid) || isAdmin();
+      // Public creation during checkout flow
+      allow create: if request.resource.data.customer != null &&
+                      request.resource.data.items is list &&
+                      request.resource.data.status == 'pending';
+      // Only fullAdmin can update order status / notes
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ------------------------------------------------------------------------
+    // 4. Admin Users Collection
+    // Readable and writable by fullAdmin, and bootstrap allowance for primary admin
+    // ------------------------------------------------------------------------
+    match /adminUsers/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow write: if isAdmin() || (isOwner(uid) && uid == 'ZulQ8SXy9fh1zmKj3GFnz1fpRl43');
+    }
+
+    // ------------------------------------------------------------------------
+    // 5. Carts and Wishlists Collections
+    // Readable/writable only by their owning authenticated user
+    // ------------------------------------------------------------------------
+    match /carts/{userId} {
+      allow read, write: if isOwner(userId);
+    }
+
+    match /wishlists/{userId} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // ------------------------------------------------------------------------
+    // 6. Contact Messages & Newsletter Subscribers
+    // Create-only from public storefront; read restricted to fullAdmin
+    // ------------------------------------------------------------------------
+    match /contactMessages/{messageId} {
+      allow create: if request.resource.data.email is string &&
+                      request.resource.data.message is string;
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /newsletterSubscribers/{subscriberId} {
+      allow create: if request.resource.data.email is string;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // ------------------------------------------------------------------------
+    // 7. Diagnostics Collection
+    // Read/write restricted to fullAdmin
+    // ------------------------------------------------------------------------
+    match /_diagnostics/{docId} {
+      allow read, write: if isAdmin();
+    }
+
+    // ------------------------------------------------------------------------
+    // 8. User Profiles Collection
+    // Customer profile with one saved shipping address
+    // ------------------------------------------------------------------------
+    match /users/{userId} {
+      allow read, write: if isOwner(userId) || isAdmin();
+    }
+
+    // ------------------------------------------------------------------------
+    // 9. Site Settings (Contact & Branding)
+    // Public read for storefront; write strictly restricted to fullAdmin
+    // ------------------------------------------------------------------------
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

@@ -1,0 +1,25 @@
+# DAHR Parfums - Robots Exclusion Standard
+# https://dahr-parfums.com
+
+User-agent: *
+# Disallow all administrative consoles, internal telemetry, and private authentication
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /#admin*
+Disallow: /#diagnostics*
+Disallow: /#showcase*
+Disallow: /api/*
+
+# Explicitly allow public storefront, collections, catalog, journal, and concierge
+Allow: /
+Allow: /#shop*
+Allow: /#collections*
+Allow: /#about*
+Allow: /#journal*
+Allow: /#contact*
+Allow: /#privacy*
+Allow: /#terms*
+Allow: /#shipping-returns*
+
+# XML Sitemap
+Sitemap: https://dahr-parfums.com/sitemap.xml

@@ -1,0 +1,300 @@
+{
+  "entities": {
+    "BilingualText": {
+      "title": "BilingualText",
+      "description": "Bilingual text container storing English and Arabic strings",
+      "type": "object",
+      "properties": {
+        "en": {
+          "type": "string",
+          "description": "English translation",
+          "maxLength": 5000
+        },
+        "ar": {
+          "type": "string",
+          "description": "Arabic translation",
+          "maxLength": 5000
+        }
+      },
+      "required": ["en", "ar"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Luxury perfume extrait item",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "maxLength": 100
+        },
+        "name": {
+          "type": "object",
+          "$ref": "#/entities/BilingualText"
+        },
+        "shortDescriptor": {
+          "type": "object",
+          "$ref": "#/entities/BilingualText"
+        },
+        "longDescription": {
+          "type": "object",
+          "$ref": "#/entities/BilingualText"
+        },
+        "scentFamily": {
+          "type": "string",
+          "enum": ["Woody", "Floral", "Oriental", "Fresh", "Amber", "Musk"]
+        },
+        "notes": {
+          "type": "object",
+          "properties": {
+            "top": { "$ref": "#/entities/BilingualText" },
+            "heart": { "$ref": "#/entities/BilingualText" },
+            "base": { "$ref": "#/entities/BilingualText" }
+          },
+          "required": ["top", "heart", "base"]
+        },
+        "sizes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "size": { "type": "string", "maxLength": 50 },
+              "price": { "type": "number" },
+              "stock": { "type": "number" }
+            },
+            "required": ["size", "price", "stock"]
+          }
+        },
+        "images": {
+          "type": "array",
+          "items": { "type": "string", "maxLength": 1000 }
+        },
+        "flags": {
+          "type": "object",
+          "properties": {
+            "isNew": { "type": "boolean" },
+            "isSignature": { "type": "boolean" },
+            "isFeatured": { "type": "boolean" }
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "active"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "name", "shortDescriptor", "longDescription", "scentFamily", "notes", "sizes", "status"]
+    },
+    "JournalArticle": {
+      "title": "JournalArticle",
+      "description": "Bilingual editorial or harvest study article",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "maxLength": 100
+        },
+        "title": { "$ref": "#/entities/BilingualText" },
+        "excerpt": { "$ref": "#/entities/BilingualText" },
+        "body": { "$ref": "#/entities/BilingualText" },
+        "heroImage": { "type": "string", "maxLength": 1000 },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "published"]
+        },
+        "publishedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "title", "excerpt", "body", "status", "publishedAt"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Storefront client order record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_-]+$", "maxLength": 100 },
+        "customer": {
+          "type": "object",
+          "properties": {
+            "uid": { "type": "string", "maxLength": 128 },
+            "name": { "type": "string", "maxLength": 200 },
+            "email": { "type": "string", "maxLength": 200 },
+            "phone": { "type": "string", "maxLength": 50 }
+          },
+          "required": ["name", "email"]
+        },
+        "items": { "type": "array" },
+        "subtotal": { "type": "number" },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "processing", "shipped", "delivered", "cancelled"]
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "customer", "items", "subtotal", "status", "createdAt"]
+    },
+    "AdminUser": {
+      "title": "AdminUser",
+      "description": "Privileged staff or full administrator",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 200 },
+        "role": { "type": "string", "enum": ["fullAdmin", "staff"] },
+        "displayName": { "type": "string", "maxLength": 200 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Cart": {
+      "title": "Cart",
+      "description": "User shopping bag state",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "items": { "type": "array" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "items"]
+    },
+    "Wishlist": {
+      "title": "Wishlist",
+      "description": "User wishlist state",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "items": { "type": "array" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "items"]
+    },
+    "ContactMessage": {
+      "title": "ContactMessage",
+      "description": "Concierge inquiry form message",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 100 },
+        "name": { "type": "string", "maxLength": 200 },
+        "email": { "type": "string", "maxLength": 200 },
+        "subject": { "type": "string", "maxLength": 200 },
+        "message": { "type": "string", "maxLength": 4000 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "message"]
+    },
+    "NewsletterSubscriber": {
+      "title": "NewsletterSubscriber",
+      "description": "Newsletter email subscription",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 200 },
+        "locale": { "type": "string", "enum": ["en", "ar"] },
+        "subscribedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "subscribedAt"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Customer account profile with saved shipping address",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 200 },
+        "displayName": { "type": "string", "maxLength": 200 },
+        "phone": { "type": "string", "maxLength": 50 },
+        "address": {
+          "type": "object",
+          "properties": {
+            "recipientName": { "type": "string", "maxLength": 200 },
+            "phone": { "type": "string", "maxLength": 50 },
+            "line1": { "type": "string", "maxLength": 300 },
+            "line2": { "type": "string", "maxLength": 300 },
+            "city": { "type": "string", "maxLength": 100 },
+            "state": { "type": "string", "maxLength": 100 },
+            "postalCode": { "type": "string", "maxLength": 50 },
+            "country": { "type": "string", "maxLength": 100 }
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "ContactSettings": {
+      "title": "ContactSettings",
+      "description": "Global contact and social links settings",
+      "type": "object",
+      "properties": {
+        "facebookPage": { "type": "string", "maxLength": 500 },
+        "facebookGroup": { "type": "string", "maxLength": 500 },
+        "instagram": { "type": "string", "maxLength": 500 },
+        "whatsappNumber": { "type": "string", "maxLength": 100 },
+        "whatsappGroup": { "type": "string", "maxLength": 500 },
+        "telegramChannel": { "type": "string", "maxLength": 500 },
+        "telegramGroup": { "type": "string", "maxLength": 500 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "BrandingSettings": {
+      "title": "BrandingSettings",
+      "description": "Global brand logo and bilingual site name settings",
+      "type": "object",
+      "properties": {
+        "logoImageUrl": { "type": "string", "maxLength": 2000 },
+        "siteName": { "$ref": "#/entities/BilingualText" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["siteName"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "#/entities/Product",
+      "description": "Public and internal fragrance catalog"
+    },
+    "/journalArticles/{articleId}": {
+      "schema": "#/entities/JournalArticle",
+      "description": "Bilingual editorial and harvest journals"
+    },
+    "/orders/{orderId}": {
+      "schema": "#/entities/Order",
+      "description": "Client order records"
+    },
+    "/adminUsers/{uid}": {
+      "schema": "#/entities/AdminUser",
+      "description": "Staff and administrator role directory"
+    },
+    "/carts/{userId}": {
+      "schema": "#/entities/Cart",
+      "description": "Persistent client shopping cart"
+    },
+    "/wishlists/{userId}": {
+      "schema": "#/entities/Wishlist",
+      "description": "Persistent client fragrance wishlist"
+    },
+    "/contactMessages/{messageId}": {
+      "schema": "#/entities/ContactMessage",
+      "description": "Client concierge contact submissions"
+    },
+    "/newsletterSubscribers/{subscriberId}": {
+      "schema": "#/entities/NewsletterSubscriber",
+      "description": "Newsletter subscriber email records"
+    },
+    "/users/{userId}": {
+      "schema": "#/entities/UserProfile",
+      "description": "Customer account profile with saved shipping address"
+    },
+    "/settings/{settingId}": {
+      "schema": "#/entities/ContactSettings",
+      "description": "Global storefront branding and contact channels settings"
+    }
+  }
+}

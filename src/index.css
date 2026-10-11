@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Brand Color Palette */
+    --color-background: #F5F1EA;
+    --color-surface: #FAF7F2;
+    --color-text-primary: #1C1A17;
+    --color-text-muted: #7A736A;
+    --color-border: #E4DED3;
+    --color-accent: #A98860;
+    --color-success: #4B5D46;
+    --color-warning: #A9772F;
+    --color-error: #8C3B2E;
+
+    /* Fonts */
+    --font-display-latin: 'Cormorant Garamond', Georgia, serif;
+    --font-display-arabic: 'Amiri', 'Noto Naskh Arabic', serif;
+    --font-body-latin: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-body-arabic: 'IBM Plex Sans Arabic', 'Readex Pro', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Active typography font variables defaults (Latin) */
+    --font-display: var(--font-display-latin);
+    --font-body: var(--font-body-latin);
+  }
+
+  /* RTL / Arabic Font Switching */
+  [dir="rtl"] {
+    --font-display: var(--font-display-arabic);
+    --font-body: var(--font-body-arabic);
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Headings inherit active display font */
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    font-weight: 400;
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  /* Arabic typography adjustments */
+  [dir="rtl"] .font-display {
+    letter-spacing: 0 !important;
+    line-height: 1.25;
+  }
+
+  [dir="rtl"] .font-body {
+    letter-spacing: 0 !important;
+    line-height: 1.7;
+  }
+
+  [dir="rtl"] .uppercase-tracked {
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+  }
+}
+
+/* Luxury hairline borders and clean token utilities */
+.border-hairline {
+  border-color: #E4DED3;
+}
+
+.bg-sand-bg {
+  background-color: #F5F1EA;
+}
+
+.bg-sand-surface {
+  background-color: #FAF7F2;
+}
+
+.text-sand-primary {
+  color: #1C1A17;
+}
+
+.text-sand-muted {
+  color: #7A736A;
+}
+
+.accent-bronze {
+  color: #A98860;
+}
+
+.border-bronze {
+  border-color: #A98860;
+}
+
+/* Subtle image transitions */
+img {
+  transition: opacity 300ms cubic-bezier(0.22, 1, 0.36, 1), transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Global Focus-Visible Accessibility Ring */
+:focus-visible {
+  outline: 2px solid #825F36;
+  outline-offset: 2px;
+}
+
+/* Global Prefers-Reduced-Motion accessibility reset */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
